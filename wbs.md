@@ -1,8 +1,8 @@
 # Work breakdown structure
 
 1. [ ] Common Libs
-   1. [ ] Study Dapper
-   2. [ ] Unit of Work + Repo pattern
+   1. [x] Study Dapper
+   2. [x] Unit of Work + Repo pattern
    3. [ ] Moex index response Parser
       1. [ ] Securities parser (http://iss.moex.com/iss/reference/5)
       2. [ ] Index response Parser
