@@ -4,10 +4,10 @@
    1. [x] Study Dapper
    2. [x] Unit of Work + Repo pattern
    3. [ ] Moex index response Parser
-      1. [ ] Securities parser (http://iss.moex.com/iss/reference/5)
-      2. [ ] Index response Parser
+      1. [x] Securities parser (http://iss.moex.com/iss/reference/5)
+      2. [x] Index response Parser
       3. [ ] Price response Parser
-   4. [ ] Choose REST client
+   4. [x] Choose REST client
    5. [ ] Moex Data Provider
       1. [ ] Securities
       2. [ ] Current Price (last) for securities

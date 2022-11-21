@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <data id="securities">
+        <rows>
+            <row secid="A-RM" name="Agilent TechnologiesORD SHS"/>
+            <row secid="AA-RM" name="Alcoa Corporation"/>
+            <row secid="AAL-RM" name="American Airlines Group Inc."/>
+            <row secid="AAP-RM" name="ADVANCE AUTO PARTS, INC ORDSHS"/>
+            <row secid="AAPL-RM" name="Apple Inc."/>
+            <row secid="ABBV-RM" name="AbbVie Inc."/>
+            <row secid="ABC-RM" name="AmerisourceBergen CorpORD SHS"/>
+            <row secid="ABMD-RM" name="ABIOMED Ord Shs"/>
+            <row secid="ABNB-RM" name="Airbnb, Inc. ORD SHS CL A"/>
+            <row secid="ABRD" name="Абрау-Дюрсо ПАО ао"/>
+            <row secid="ABT-RM" name="Abbott Laboratories"/>
+            <row secid="ACAD-RM" name="Acadia Pharmaceuticals Ord Shs"/>
+            <row secid="ACKO" name="АСКО ПАО ао"/>
+            <row secid="ACN-RM" name="Accenture plc ORD SHS CL A"/>
+            <row secid="acru" name="Открытое акционерное общество &quot;Авиационная корпорация &quot;Рубин&quot;"/>
+            <row secid="ADBE-RM" name="Adobe Inc."/>
+            <row secid="ADI-RM" name="Analog Devices, Inc. ORD SHS"/>
+            <row secid="ADM-RM" name="Archer Daniels Midland Ord Shs"/>
+            <row secid="ADP-RM" name="Automatic Data Processing Ord"/>
+            <row secid="ADSK-RM" name="AUTODESK INC ORDSHS"/>
+            <row secid="AEE-RM" name="Ameren Corporation ORD SHS"/>
+            <row secid="AEO-RM" name="Am Eagle Outfitter Inc ORD SHS"/>
+            <row secid="AEP-RM" name="American Electr. Power ORD SHS"/>
+            <row secid="AER-RM" name="AerCap Holdings N.V._ORD SHS"/>
+            <row secid="AES-RM" name="The AES Corporation ORD SHS"/>
+            <row secid="AFKS" name="АФК &quot;Система&quot; ПАО ао"/>
+            <row secid="AFL-RM" name="AFLAC Ord Shs"/>
+            <row secid="AFLT" name="Аэрофлот-росс.авиалин(ПАО)ао"/>
+            <row secid="AIG-RM" name="American International ORD SHS"/>
+            <row secid="AIZ-RM" name="Assurant Ord Shs"/>
+            <row secid="AJG-RM" name="Arthur J Gallagher ORD SHS"/>
+            <row secid="AKAM-RM" name="Akamai TechnologiesORD SHS"/>
+            <row secid="AKRN" name="Акрон ПАО ао"/>
+            <row secid="ALB-RM" name="Albemarle Ord Shs"/>
+            <row secid="ALGN-RM" name="Align Technology, Inc. ORD SHS"/>
+            <row secid="ALK-RM" name="ALASKA AIR GROUP INC ORD SHS"/>
+            <row secid="ALL-RM" name="ALLSTATE CORP/THE ORDSHS"/>
+            <row secid="ALLY-RM" name="Ally Financial Inc. ORD SHS"/>
+            <row secid="ALRS" name="АЛРОСА ПАО ао"/>
+            <row secid="AMAT-RM" name="Applied Materials, Inc."/>
+            <row secid="AMC-RM" name="AMC Entertainment Holdings"/>
+            <row secid="AMD-RM" name="Advanced Micro Devices, Inc."/>
+            <row secid="AME-RM" name="AMETEK, INC. ORDSHS"/>
+            <row secid="AMEZ" name=" Ашинский метзавод ПАО ао"/>
+            <row secid="AMGN-RM" name="Amgen Inc."/>
+            <row secid="AMP-RM" name="Ameriprise Financial Inc ORDSH"/>
+            <row secid="AMT-RM" name="American Tower Corporation"/>
+            <row secid="AMZN-RM" name="Amazon.com Inc."/>
+            <row secid="ANET-RM" name="Arista Networks, Inc. ORD SHS"/>
+            <row secid="ANF-RM" name="Abercrombie &amp; Fitch_ORDSH CL A"/>
+            <row secid="ANGI-RM" name="ANGI ORD SHS CL A"/>
+            <row secid="ANSS-RM" name="Ansys Ord Shs"/>
+            <row secid="AOS-RM" name="A O Smith Ord Shs"/>
+            <row secid="APA-RM" name="APA Corporation"/>
+            <row secid="APD-RM" name="Air Products and Chemicals Ord"/>
+            <row secid="APH-RM" name="Amphenol Corporation"/>
+            <row secid="APP-RM" name="AppLovin Corp ORD SHS CL A"/>
+            <row secid="APPH-RM" name="AppHarvest, Inc. ORD SHS"/>
+            <row secid="APPS-RM" name="Digital Turbine, Inc. ORD SHS"/>
+            <row secid="APTK" name="ПАО &quot;Аптечная сеть 36,6&quot; ао"/>
+            <row secid="AQUA" name="ПАО ИНАРКТИКА"/>
+            <row secid="ARCC-RM" name="ARES CAPORD SHS"/>
+            <row secid="ARMK-RM" name="Aramark ORD SHS"/>
+            <row secid="ARSA" name="УК Арсагера ПАО-ао"/>
+            <row secid="ASO-RM" name="Academy Sports Outdoors ORDSHS"/>
+            <row secid="ASSB" name="&quot;Астраханская ЭСК&quot; ПАО"/>
+            <row secid="ATO-RM" name="Atmos Energy Ord Shs"/>
+            <row secid="ATUS-RM" name="Altice USA, Inc. ORD SHS CL A"/>
+            <row secid="ATVI-RM" name="Activision Blizzard, Inc."/>
+            <row secid="AVAG" name="Авангард-Агро АО ао"/>
+            <row secid="AVAN" name="АКБ &quot;АВАНГАРД&quot; ПАО ао"/>
+            <row secid="AVGO-RM" name="Broadcom Inc."/>
+            <row secid="AVTR-RM" name="Avantor, Inc. ORD SHS"/>
+            <row secid="AVY-RM" name="Avery Dennison Corp ORD SHS"/>
+            <row secid="AWK-RM" name="American Water Works Co ORDSHS"/>
+            <row secid="AXP-RM" name="American Express Company"/>
+            <row secid="AYX-RM" name="Alteryx, Inc."/>
+            <row secid="AZO-RM" name="AUTOZONE, INC. ORDSHS"/>
+            <row secid="BA-RM" name="The Boeing Company"/>
+            <row secid="BAC-RM" name="Bank of America Corporation"/>
+            <row secid="BALL-RM" name="Ball Corporation ORD SHS"/>
+            <row secid="BANE" name="Башнефть АНК ао"/>
+            <row secid="BAX-RM" name="Baxter International ORD SHS"/>
+            <row secid="BBBY-RM" name="Bed Bath &amp; Beyond Inc. ORD SHS"/>
+            <row secid="BBWI-RM" name="Bath &amp; Body Works, Inc ORD SHS"/>
+            <row secid="BBY-RM" name="Best Buy Co., Inc. ORD SHS"/>
+            <row secid="BDX-RM" name="Becton Dickinson Ord Shs"/>
+            <row secid="BELU" name="Белуга Групп ПАО ао"/>
+            <row secid="BEN-RM" name="Franklin Resources Ord Shs"/>
+            <row secid="BFB-RM" name="Brown Forman Ord Shs Class B"/>
+            <row secid="BGS-RM" name="B&amp;G Foods, Inc. ORD SHS"/>
+            <row secid="BIIB-RM" name="Biogen Inc."/>
+            <row secid="BILL-RM" name="Bill.com Holdings, Inc. ORD SH"/>
+            <row secid="BIO-RM" name="Bio-Rad Laborat ORD SHS CL A"/>
+            <row secid="BISV" name="Башинформсвязь(ПАО) ао"/>
+            <row secid="BJ-RM" name="BJs Wholesale Club Hld ORD SHS"/>
+            <row secid="BK-RM" name="The Bank of NY Mellon Corp"/>
+            <row secid="BKNG-RM" name="Booking Holdings Inc."/>
+            <row secid="BKR-RM" name="Baker Hughes A Ge CO Cl A"/>
+            <row secid="BLDR-RM" name="Builders FirstSource ORD SHS"/>
+        </rows>
+    </data>
+</document>

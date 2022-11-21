@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <data id="analytics">
+        <rows>
+            <row secids="AFKS" weight="0.37"/>
+            <row secids="AFLT" weight="0.23"/>
+            <row secids="ALRS" weight="1.54"/>
+            <row secids="CBOM" weight="0.43"/>
+            <row secids="CHMF" weight="1.4"/>
+            <row secids="DSKY" weight="0.25"/>
+            <row secids="ENPG" weight="0.34"/>
+            <row secids="FIVE" weight="1.57"/>
+            <row secids="FIXP" weight="0.37"/>
+            <row secids="GAZP" weight="10.95"/>
+            <row secids="GLTR" weight="0.26"/>
+            <row secids="GMKN" weight="7.67"/>
+            <row secids="HYDR" weight="0.74"/>
+            <row secids="IRAO" weight="1.07"/>
+            <row secids="LKOH" weight="16.18"/>
+            <row secids="MAGN" weight="0.62"/>
+            <row secids="MGNT" weight="3.1"/>
+            <row secids="MOEX" weight="1.19"/>
+            <row secids="MTSS" weight="1.75"/>
+            <row secids="NLMK" weight="1.23"/>
+            <row secids="NVTK" weight="6.31"/>
+            <row secids="OZON" weight="1.05"/>
+            <row secids="PHOR" weight="2"/>
+            <row secids="PIKK" weight="0.84"/>
+            <row secids="PLZL" weight="1.78"/>
+            <row secids="POLY" weight="1"/>
+            <row secids="ROSN" weight="3.57"/>
+            <row secids="RTKM" weight="0.51"/>
+            <row secids="RUAL" weight="0.96"/>
+            <row secids="SBER" weight="12.82"/>
+            <row secids="SBERP" weight="1.2"/>
+            <row secids="SNGS" weight="1.78"/>
+            <row secids="SNGSP" weight="1.31"/>
+            <row secids="TATN" weight="2.4"/>
+            <row secids="TATNP" weight="0.48"/>
+            <row secids="TCSG" weight="2.97"/>
+            <row secids="TRNFP" weight="0.48"/>
+            <row secids="VKCO" weight="0.54"/>
+            <row secids="VTBR" weight="0.73"/>
+            <row secids="YNDX" weight="6.03"/>
+        </rows>
+    </data>
+    <data id="analytics.cursor">
+        <rows>
+            <row INDEX="0" TOTAL="40" PAGESIZE="100" PREV_DATE="2022-11-18" NEXT_DATE=""/>
+        </rows>
+    </data>
+    <data id="analytics.dates">
+        <rows>
+            <row from="2001-01-03" till="2022-11-21"/>
+        </rows>
+    </data>
+</document>
