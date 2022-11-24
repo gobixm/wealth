@@ -1,36 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Backend", "Wealth.Backend\Wealth.Backend.csproj", "{E4668EF3-A9CA-4BD2-9E5C-E2C8EB6606E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Backend", "Wealth\Wealth.Backend\Wealth.Backend.csproj", "{E4668EF3-A9CA-4BD2-9E5C-E2C8EB6606E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Services", "Wealth.Services\Wealth.Services.csproj", "{E0AEC40E-EEBB-4A1A-AAE5-303D8932115D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Services", "Wealth\Wealth.Services\Wealth.Services.csproj", "{E0AEC40E-EEBB-4A1A-AAE5-303D8932115D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Infrastructure", "Wealth.Infrastructure\Wealth.Infrastructure.csproj", "{08CA8294-B550-444B-AA01-3BBE4C6C676A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Infrastructure", "Wealth\Wealth.Infrastructure\Wealth.Infrastructure.csproj", "{08CA8294-B550-444B-AA01-3BBE4C6C676A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Domain", "Wealth.Domain\Wealth.Domain.csproj", "{E7E1A73E-3E4B-4195-B643-73DE03CBD2C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wealth.Domain", "Wealth\Wealth.Domain\Wealth.Domain.csproj", "{E7E1A73E-3E4B-4195-B643-73DE03CBD2C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wealth", "Wealth", "{AE83193B-7DD1-4A43-83E9-294B7FD52353}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{3DDA5C30-FACE-436D-88EE-00DD3B14CC74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Abstractions", "DataAccess.Abstractions\DataAccess.Abstractions.csproj", "{44E2BA44-9251-44CC-8E34-EDE7136B8525}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Abstractions", "Libs\DataAccess\DataAccess.Abstractions\DataAccess.Abstractions.csproj", "{44E2BA44-9251-44CC-8E34-EDE7136B8525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3AB1443A-331E-4D30-A67B-10DAD652FF12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Libs\DataAccess\DataAccess\DataAccess.csproj", "{3AB1443A-331E-4D30-A67B-10DAD652FF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Pg", "DataAccess.Pg\DataAccess.Pg.csproj", "{5B228A54-5640-4785-BB77-EAC097735ECD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Pg", "Libs\DataAccess\DataAccess.Pg\DataAccess.Pg.csproj", "{5B228A54-5640-4785-BB77-EAC097735ECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{AEB42594-230E-4948-9A0F-1FFD1FF9FB01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "Libs\DataAccess\DataAccess.Tests\DataAccess.Tests.csproj", "{AEB42594-230E-4948-9A0F-1FFD1FF9FB01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests.Integration", "DataAccess.Tests.Integration\DataAccess.Tests.Integration.csproj", "{4691F22B-491F-40FF-8227-01D89CE23F11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests.Integration", "Libs\DataAccess\DataAccess.Tests.Integration\DataAccess.Tests.Integration.csproj", "{4691F22B-491F-40FF-8227-01D89CE23F11}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{954E6187-6B76-4D0D-A096-53673D29F4D1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "Libs\DataAccess\DataAccess", "{954E6187-6B76-4D0D-A096-53673D29F4D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moex", "Moex", "{DA5F0CBF-350B-455C-B380-F97342001816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex.Abstractions", "Moex.Abstractions\Moex.Abstractions.csproj", "{C64BEDDD-0487-4E50-83CC-59FA6B681845}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex.Abstractions", "Libs\Moex\Moex.Abstractions\Moex.Abstractions.csproj", "{C64BEDDD-0487-4E50-83CC-59FA6B681845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex", "Moex\Moex.csproj", "{DEA7745E-DE50-4EE1-956C-616135DA10B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex", "Libs\Moex\Moex\Moex.csproj", "{DEA7745E-DE50-4EE1-956C-616135DA10B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex.Tests", "Moex.Tests\Moex.Tests.csproj", "{E753C26C-334F-40A1-BD1D-8FF877142126}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moex.Tests", "Libs\Moex\Moex.Tests\Moex.Tests.csproj", "{E753C26C-334F-40A1-BD1D-8FF877142126}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

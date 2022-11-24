@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Moex\Moex.csproj" />
+      <ProjectReference Include="..\..\Libs\Moex\Moex\Moex.csproj" />
       <ProjectReference Include="..\Wealth.Services\Wealth.Services.csproj" />
     </ItemGroup>
 

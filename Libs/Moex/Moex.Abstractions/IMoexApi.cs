@@ -1,6 +1,4 @@
-using Moex.Abstractions;
-
-namespace Moex;
+namespace Moex.Abstractions;
 
 public interface IMoexApi : IDisposable
 {
