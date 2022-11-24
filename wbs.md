@@ -9,9 +9,9 @@
       3. [ ] Price response Parser
    4. [x] Choose REST client
    5. [ ] Moex Data Provider
-      1. [ ] Securities
+      1. [x] Securities
       2. [ ] Current Price (last) for securities
-      3. [ ] Index SecIds and rates
+      3. [x] Index SecIds and rates
 2. [ ] Data access layer
    1. [ ] Deploy postgresql
    2. [ ] Currency Repository
