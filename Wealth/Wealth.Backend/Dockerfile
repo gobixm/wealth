@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Wealth.Backend/Wealth.Backend.csproj", "Wealth.Backend/"]
-RUN dotnet restore "Wealth.Backend/Wealth.Backend.csproj"
+COPY ["Wealth/Wealth.Backend/Wealth.Backend.csproj", "Wealth/Wealth.Backend/"]
+RUN dotnet restore "Wealth/Wealth.Backend/Wealth.Backend.csproj"
 COPY . .
-WORKDIR "/src/Wealth.Backend"
+WORKDIR "/src/Wealth/Wealth.Backend"
 RUN dotnet build "Wealth.Backend.csproj" -c Release -o /app/build
 
 FROM build AS publish

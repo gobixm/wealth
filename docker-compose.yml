@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  wealth:
+    build:
+      context: .
+      dockerfile: Wealth/Wealth.Backend/Dockerfile
+    ports:
+      - "5000:80"

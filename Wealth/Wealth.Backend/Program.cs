@@ -20,6 +20,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapGet("/", () => ".!.");
+
 app.MapControllers();
 
 app.Run();
