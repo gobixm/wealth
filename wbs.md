@@ -13,7 +13,7 @@
       2. [ ] Current Price (last) for securities
       3. [x] Index SecIds and rates
 2. [ ] Data access layer
-   1. [ ] Deploy postgresql
+   1. [x] Deploy postgresql
    2. [ ] Currency Repository
    3. [ ] Ticker Repository
    4. [ ] Transaction History Repository
@@ -22,7 +22,7 @@
 3. [ ] Frontend prototype
    1. [ ] Scaffold
    2. [ ] Deploy in docker
-4. [ ] Add ticker scenarion
+4. [ ] Add ticker scenario
    1. [ ] Logic + presenter
    2. [ ] UI
 5. [ ] Add Transaction scenario

@@ -11,4 +11,9 @@
       <ProjectReference Include="..\Wealth.Services\Wealth.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+      <PackageReference Include="FluentMigrator.Runner.Postgres" Version="3.3.2" />
+    </ItemGroup>
+
 </Project>

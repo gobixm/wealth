@@ -38,17 +38,19 @@ public sealed class PgUnitOfWorkTests : IAsyncLifetime
     public async Task GetRepository_Repository_Created()
     {
         // arrange
-        var unitOfWork = new PgUnitOfWork(new PgOptions(_dbContainer.ConnectionString), new PgRepositoryFactory(
-            new PgRepositoryFactoryOptions()
-                .RegisterRepository<ITestRepo, TestRepo>()));
+        var unitOfWork = new PgUnitOfWork(new PgOptions {ConnectionString = _dbContainer.ConnectionString},
+            new PgRepositoryFactory(
+                new PgRepositoryFactoryOptions()
+                    .RegisterRepository<ITestRepo, TestRepo>()));
 
         // act
         var repo = await unitOfWork.GetRepositoryAsync<ITestRepo>();
         var foo = await repo.CreateAsync("foo");
         await unitOfWork.CommitAsync();
-        var anotherOfWork = new PgUnitOfWork(new PgOptions(_dbContainer.ConnectionString), new PgRepositoryFactory(
-            new PgRepositoryFactoryOptions()
-                .RegisterRepository<ITestRepo, TestRepo>()));
+        var anotherOfWork = new PgUnitOfWork(new PgOptions {ConnectionString = _dbContainer.ConnectionString},
+            new PgRepositoryFactory(
+                new PgRepositoryFactoryOptions()
+                    .RegisterRepository<ITestRepo, TestRepo>()));
         var anotherRepo = await unitOfWork.GetRepositoryAsync<ITestRepo>();
         var deleted = await anotherRepo.DeleteAsync(foo.Id);
         await anotherOfWork.RollbackAsync();

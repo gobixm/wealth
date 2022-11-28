@@ -1,3 +1,6 @@
 namespace DataAccess.Pg;
 
-public sealed record PgOptions(string ConnectionString);
+public sealed record PgOptions
+{
+    public string ConnectionString { get; init; } = null!;
+}
