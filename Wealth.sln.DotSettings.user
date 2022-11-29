@@ -4,5 +4,6 @@
     &lt;TestId&gt;xUnit::4691F22B-491F-40FF-8227-01D89CE23F11::net6.0::DataAccess.Tests.Integration.PgUnitOfWorkTests.GetRepository_Repository_Created&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E753C26C-334F-40A1-BD1D-8FF877142126::net6.0::Moex.Tests.SecurityTests.Deserialize_Security_Deserialized&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E753C26C-334F-40A1-BD1D-8FF877142126::net6.0::Moex.Tests.SecurityTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::82A6782D-0F20-4C9D-85D7-9A794737D150::net6.0::Wealth.Tests.Integration.Repositories.SecurityRepositoryTests.InsertUpdateDelete_Success&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

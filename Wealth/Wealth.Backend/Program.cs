@@ -1,7 +1,8 @@
-using DataAccess.Abstractions;
 using DataAccess.Pg;
 using Wealth.Backend;
+using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
+using Wealth.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<MigratorHostedService>();
-builder.Services.AddPgSql(new PgRepositoryFactoryOptions(), typeof(Initial_20221128).Assembly);
+builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
+        .RegisterRepository<ISecurityRepository, SecurityRepository>(),
+    typeof(Initial_20221128).Assembly);
 
 var app = builder.Build();
 
