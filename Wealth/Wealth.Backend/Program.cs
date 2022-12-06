@@ -3,6 +3,7 @@ using Wealth.Backend;
 using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
 using Wealth.Infrastructure.Repositories;
+using Wealth.Services.Securities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddHostedService<MigratorHostedService>();
 builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
         .RegisterRepository<ISecurityRepository, SecurityRepository>(),
     typeof(Initial_20221128).Assembly);
+
+builder.Services.AddTransient<ISecuritySyncService, SecuritySyncService>();
 
 var app = builder.Build();
 

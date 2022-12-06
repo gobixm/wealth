@@ -19,7 +19,7 @@ public sealed class MoexApi : IMoexApi
         _client.Dispose();
     }
 
-    public async Task<IReadOnlyCollection<Security>> GetSecuritiesAsync(int start, int limit,
+    public async Task<IReadOnlyCollection<MoexSecurity>> GetSecuritiesAsync(int start, int limit,
         CancellationToken cancellationToken = default)
     {
         var request = new RestRequest("iss/securities.xml")
@@ -34,7 +34,7 @@ public sealed class MoexApi : IMoexApi
         response.ThrowIfNull();
 
         return response.Data.Rows.Rows
-            .Select(x => new Security(x.GetAttributeValue("secid")!, x.GetAttributeValue("name")!))
+            .Select(x => new MoexSecurity(x.GetAttributeValue("secid")!, x.GetAttributeValue("name")!))
             .ToList();
     }
 

@@ -15,8 +15,8 @@ public static class PgExtensions
             x.GetRequiredService<IConfiguration>().GetSection("Pg")
                 .Get<PgOptions>());
 
-        serviceCollection.AddTransient<IUnitOfWork>(sp =>
-            new PgUnitOfWork(sp.GetRequiredService<PgOptions>(), new PgRepositoryFactory(repositoryFactoryOptions)));
+        serviceCollection.AddSingleton<IUnitOfWorkFactory>(sp =>
+            new PgUnitOfWorkFactory(sp.GetRequiredService<PgOptions>(), repositoryFactoryOptions));
 
         serviceCollection.AddTransient<IMigrator, PgMigrator>();
 

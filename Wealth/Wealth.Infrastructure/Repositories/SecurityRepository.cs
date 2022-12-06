@@ -36,7 +36,8 @@ public sealed class SecurityRepository : PgRepository, ISecurityRepository
             cancellationToken.ThrowIfCancellationRequested();
 
             counter += await Connection.ExecuteAsync(new CommandDefinition(
-                "update securities set Name=@Name, Modified=@Modified, Term=@Term where Id=@Id", security,
+                "update securities set Name=@Name, Modified=@Modified, Term=@Term, Deleted=@Deleted where Id=@Id",
+                security,
                 cancellationToken: cancellationToken));
         }
 
@@ -51,10 +52,24 @@ public sealed class SecurityRepository : PgRepository, ISecurityRepository
             cancellationToken.ThrowIfCancellationRequested();
 
             counter += await Connection.ExecuteAsync(new CommandDefinition(
-                "insert into securities (Id, Name, Modified, Term) values (@Id, @Name, @Modified, @Term)", security,
+                "insert into securities (Id, Name, Modified, Term, Deleted) values (@Id, @Name, @Modified, @Term, @Deleted)",
+                security,
                 cancellationToken: cancellationToken));
         }
 
         return counter;
+    }
+
+    public async Task<int?> GetMaxTermAsync(CancellationToken cancellationToken = default)
+    {
+        return await Connection.QuerySingleOrDefaultAsync<int?>(new CommandDefinition("select max(Term) from securities",
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task<int> SoftDeleteNotInTermAsync(int term, CancellationToken cancellationToken = default)
+    {
+        return await Connection.ExecuteAsync(new CommandDefinition(
+            "update securities set Deleted=@Deleted, Term=@Term, Modified=@Modified where Term <> @Term",
+            new {Deleted = true, Term = term, Modified = DateTime.Now}, cancellationToken: cancellationToken));
     }
 }

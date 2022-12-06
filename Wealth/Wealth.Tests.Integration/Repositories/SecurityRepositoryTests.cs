@@ -13,6 +13,7 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
     public SecurityRepositoryTests(DbFixture fixture)
     {
         _fixture = fixture;
+        _fixture.CleanupAsync().GetAwaiter().GetResult();
     }
 
     [Fact]
@@ -23,7 +24,7 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
             .With(x => x.Modified, DateTime.Today)
             .CreateMany(10)
             .ToList();
-        await using var unitOfWork = _fixture.Provider.GetRequiredService<IUnitOfWork>();
+        await using var unitOfWork = _fixture.Provider.GetRequiredService<IUnitOfWorkFactory>().Create();
         var repo = await unitOfWork.GetRepositoryAsync<ISecurityRepository>();
 
         // act
@@ -32,7 +33,10 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
         var deleted = await repo.DeleteAsync(securities.Take(5).Select(x => x.Id).ToList());
         var afterDelete = await repo.GetAsync(securities.Select(x => x.Id).ToList());
 
-        var update = securities.Last() with {Name = "new name", Modified = DateTime.Today - TimeSpan.FromDays(1), Term = 42};
+        var update = securities.Last() with
+        {
+            Name = "new name", Modified = DateTime.Today - TimeSpan.FromDays(1), Term = 42
+        };
         var updated = await repo.UpdateAsync(new[] {update});
         var afterUpdate = await repo.GetAsync(new[] {update.Id});
 
@@ -43,5 +47,66 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
         afterDelete.Should().BeEquivalentTo(securities.Skip(5), options => options.WithoutStrictOrdering());
         updated.Should().Be(1);
         afterUpdate.Should().BeEquivalentTo(new[] {update});
+    }
+
+    [Fact]
+    public async Task SoftDeleteNotInTermAsync_Success()
+    {
+        // arrange
+        var securitiesTerm2 = new Fixture().Build<Security>()
+            .With(x=>x.Deleted, false)
+            .With(x => x.Term, () => 2)
+            .CreateMany(2)
+            .ToList();
+
+        var securitiesTerm3 = new Fixture().Build<Security>()
+            .With(x=>x.Deleted, false)
+            .With(x => x.Term, () => 3)
+            .CreateMany(2)
+            .ToList();
+
+        await using var unitOfWork = _fixture.Provider.GetRequiredService<IUnitOfWorkFactory>().Create();
+        var repo = await unitOfWork.GetRepositoryAsync<ISecurityRepository>();
+        await repo.AddAsync(securitiesTerm2.Concat(securitiesTerm3));
+
+        // act
+        await repo.SoftDeleteNotInTermAsync(3);
+
+        // assert
+        var securities2 = await repo.GetAsync(securitiesTerm2.Select(x => x.Id).ToArray());
+        securities2.Should().AllSatisfy(x => x.Term.Should().Be(3));
+        securities2.Should().AllSatisfy(x => x.Deleted.Should().Be(true));
+        
+        var securities3 = await repo.GetAsync(securitiesTerm3.Select(x => x.Id).ToArray());
+        securities3.Should().AllSatisfy(x => x.Deleted.Should().Be(false));
+    }
+
+    [Fact]
+    public async Task GetMaxTerm_Term_Returned()
+    {
+        // arrange
+        var securitiesTerm2 = new Fixture().Build<Security>()
+            .With(x => x.Modified, DateTime.Today)
+            .With(x => x.Term, () => 2)
+            .CreateMany(2)
+            .ToList();
+
+        var securitiesTerm3 = new Fixture().Build<Security>()
+            .With(x => x.Modified, DateTime.Today)
+            .With(x => x.Term, () => 3)
+            .CreateMany(2)
+            .ToList();
+
+        await using var unitOfWork = _fixture.Provider.GetRequiredService<IUnitOfWorkFactory>().Create();
+        var repo = await unitOfWork.GetRepositoryAsync<ISecurityRepository>();
+
+        // act
+        var noTerm = await repo.GetMaxTermAsync();
+        await repo.AddAsync(securitiesTerm2.Concat(securitiesTerm3));
+        var maxTerm = await repo.GetMaxTermAsync();
+
+        // assert
+        noTerm.Should().BeNull();
+        maxTerm.Should().Be(3);
     }
 }

@@ -1,3 +1,4 @@
+using Dapper;
 using DataAccess.Abstractions;
 using DataAccess.Pg;
 using DotNet.Testcontainers.Builders;
@@ -5,6 +6,7 @@ using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
 using Wealth.Infrastructure.Repositories;
@@ -51,5 +53,11 @@ public sealed class DbFixture : IAsyncLifetime
     public async Task DisposeAsync()
     {
         await _dbContainer.StopAsync();
+    }
+
+    public async Task CleanupAsync()
+    {
+        await using var connection = new NpgsqlConnection(_dbContainer.ConnectionString);
+        await connection.ExecuteAsync("delete from securities");
     }
 }

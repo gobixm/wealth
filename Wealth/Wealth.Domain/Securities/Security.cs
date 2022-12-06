@@ -6,4 +6,6 @@ public sealed record Security
     public string Name { get; init; } = null!;
     public DateTime Modified { get; init; }
     public int Term { get; init; }
+    
+    public bool Deleted { get; init; }
 }
