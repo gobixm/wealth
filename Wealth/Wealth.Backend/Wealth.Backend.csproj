@@ -14,6 +14,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Libs\DataAccess\DataAccess.Abstractions\DataAccess.Abstractions.csproj" />
       <ProjectReference Include="..\..\Libs\DataAccess\DataAccess.Pg\DataAccess.Pg.csproj" />
+      <ProjectReference Include="..\..\Libs\Moex\Moex\Moex.csproj" />
       <ProjectReference Include="..\Wealth.Domain\Wealth.Domain.csproj" />
       <ProjectReference Include="..\Wealth.Infrastructure\Wealth.Infrastructure.csproj" />
       <ProjectReference Include="..\Wealth.Services\Wealth.Services.csproj" />

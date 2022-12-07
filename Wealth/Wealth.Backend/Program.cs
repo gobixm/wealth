@@ -1,4 +1,5 @@
 using DataAccess.Pg;
+using Moex.Extenstions;
 using Wealth.Backend;
 using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
@@ -17,6 +18,7 @@ builder.Services.AddHostedService<MigratorHostedService>();
 builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
         .RegisterRepository<ISecurityRepository, SecurityRepository>(),
     typeof(Initial_20221128).Assembly);
+builder.Services.AddMoex();
 
 builder.Services.AddTransient<ISecuritySyncService, SecuritySyncService>();
 
