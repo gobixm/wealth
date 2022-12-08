@@ -1,10 +1,15 @@
 <script lang="ts">
-  let count: number = 0
+  import Button from "@smui/button";
+
+  let count: number = 0;
   const increment = () => {
-    count += 1
-  }
+    count += 1;
+  };
+
+  let mode = import.meta.env.WEALTH_API_URL;
 </script>
 
-<button on:click={increment}>
+<Button on:click={increment}>
   count is {count}
-</button>
+  mode is {mode}
+</Button>

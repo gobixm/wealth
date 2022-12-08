@@ -4,7 +4,7 @@ WORKDIR /src
 
 ADD package.json /src 
 
-RUN npm i --silent
+RUN npm i
 
 ADD . .
 
