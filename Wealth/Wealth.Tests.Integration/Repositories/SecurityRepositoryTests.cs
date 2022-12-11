@@ -54,13 +54,13 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
     {
         // arrange
         var securitiesTerm2 = new Fixture().Build<Security>()
-            .With(x=>x.Deleted, false)
+            .With(x => x.Deleted, false)
             .With(x => x.Term, () => 2)
             .CreateMany(2)
             .ToList();
 
         var securitiesTerm3 = new Fixture().Build<Security>()
-            .With(x=>x.Deleted, false)
+            .With(x => x.Deleted, false)
             .With(x => x.Term, () => 3)
             .CreateMany(2)
             .ToList();
@@ -76,9 +76,37 @@ public sealed class SecurityRepositoryTests : IClassFixture<DbFixture>
         var securities2 = await repo.GetAsync(securitiesTerm2.Select(x => x.Id).ToArray());
         securities2.Should().AllSatisfy(x => x.Term.Should().Be(3));
         securities2.Should().AllSatisfy(x => x.Deleted.Should().Be(true));
-        
+
         var securities3 = await repo.GetAsync(securitiesTerm3.Select(x => x.Id).ToArray());
         securities3.Should().AllSatisfy(x => x.Deleted.Should().Be(false));
+    }
+
+    [Fact]
+    public async Task Find_Securities_Returned()
+    {
+        // arrange
+        var securities = new Fixture().Build<Security>()
+            .With(x => x.Modified, DateTime.Today)
+            .CreateMany(10)
+            .ToArray();
+
+        for (var i = 0; i < securities.Length; i++) securities[i] = securities[i] with {Name = $"foo{i}"};
+
+        await using var unitOfWork = _fixture.Provider.GetRequiredService<IUnitOfWorkFactory>().Create();
+        var repo = await unitOfWork.GetRepositoryAsync<ISecurityRepository>();
+        await repo.AddAsync(securities);
+
+        // act
+        var all = await repo.FindAsync(null, 0, 10);
+        var allByPattern = await repo.FindAsync("foo", 0, 10);
+        var one = await repo.FindAsync("foo1", 0, 10);
+        var page = await repo.FindAsync("foo", 3, 3);
+
+        // assert
+        all.Should().BeEquivalentTo(securities);
+        allByPattern.Should().BeEquivalentTo(securities);
+        one.Should().BeEquivalentTo(new[] {securities[1]});
+        page.Should().BeEquivalentTo(securities.Skip(3).Take(3));
     }
 
     [Fact]

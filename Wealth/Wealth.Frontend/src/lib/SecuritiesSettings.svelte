@@ -17,15 +17,12 @@
 
     clearInterval(progressTimer);
 
-    console.log("prog", progress);
     progressTimer = setInterval(() => getProgress(), 1_000);
   };
 
   const getProgress = async () => {
     const response = await fetch(`${apiUrl}/secs/sync-progress/${progress.id}`);
     progress = await response.json();
-
-    console.log("prog", progress);
 
     if (progress.completed) {
       clearInterval(progressTimer);

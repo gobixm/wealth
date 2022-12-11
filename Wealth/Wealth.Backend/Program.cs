@@ -19,6 +19,7 @@ builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
 builder.Services.AddMoex();
 
 builder.Services.AddSingleton<ISecuritySyncService, SecuritySyncService>();
+builder.Services.AddSingleton<ISecurityService, SecurityService>();
 
 var app = builder.Build();
 

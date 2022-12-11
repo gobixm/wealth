@@ -62,7 +62,8 @@ public sealed class SecurityRepository : PgRepository, ISecurityRepository
 
     public async Task<int?> GetMaxTermAsync(CancellationToken cancellationToken = default)
     {
-        return await Connection.QuerySingleOrDefaultAsync<int?>(new CommandDefinition("select max(Term) from securities",
+        return await Connection.QuerySingleOrDefaultAsync<int?>(new CommandDefinition(
+            "select max(Term) from securities",
             cancellationToken: cancellationToken));
     }
 
@@ -71,5 +72,17 @@ public sealed class SecurityRepository : PgRepository, ISecurityRepository
         return await Connection.ExecuteAsync(new CommandDefinition(
             "update securities set Deleted=@Deleted, Term=@Term, Modified=@Modified where Term <> @Term",
             new {Deleted = true, Term = term, Modified = DateTime.Now}, cancellationToken: cancellationToken));
+    }
+
+    public async Task<IReadOnlyCollection<Security>> FindAsync(string? nameStart, int offset, int limit,
+        CancellationToken cancellationToken = default)
+    {
+        var where = nameStart is null ? string.Empty : " where Name like @NamePattern ";
+        var query = $"select * from securities {where} order by Name limit @Limit offset @Offset";
+
+        return (await Connection.QueryAsync<Security>(new CommandDefinition(
+                query, new {NamePattern = $"{nameStart}%", Limit = limit, Offset = offset},
+                cancellationToken: cancellationToken)))
+            .ToArray();
     }
 }

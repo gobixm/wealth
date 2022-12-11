@@ -14,10 +14,16 @@ public sealed class SecuritiesController : ControllerBase
         return await service.SyncSecuritiesAsync(cancellationToken);
     }
 
-
     [HttpGet("sync-progress/{id:guid}")]
     public SecuritySyncProgressDto GetProgress(Guid id, [FromServices] ISecuritySyncService service)
     {
         return service.GetSyncProgress(id);
+    }
+
+    [HttpGet]
+    public async Task<IReadOnlyCollection<SecurityDto>> GetAsync(string? name, int offset, int limit,
+        [FromServices] ISecurityService securityService, CancellationToken cancellationToken)
+    {
+        return await securityService.GetAsync(name, offset, limit, cancellationToken);
     }
 }
