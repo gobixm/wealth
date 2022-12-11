@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Common.Collections;
 using DataAccess.Abstractions;
 using Moex.Abstractions;
@@ -8,6 +9,7 @@ namespace Wealth.Services.Securities;
 public sealed class SecuritySyncService : ISecuritySyncService
 {
     private readonly IMoexApi _moexApi;
+    private readonly ConcurrentDictionary<Guid, SecuritySyncProgressDto> _runningSyncs = new();
     private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
     public SecuritySyncService(IUnitOfWorkFactory unitOfWorkFactory, IMoexApi moexApi)
@@ -16,27 +18,47 @@ public sealed class SecuritySyncService : ISecuritySyncService
         _moexApi = moexApi;
     }
 
-    public async Task SyncSecuritiesAsync(CancellationToken cancellationToken = default)
+    public Task<SecuritySyncProgressDto> SyncSecuritiesAsync(CancellationToken cancellationToken = default)
     {
-        await using var unitOfWork = _unitOfWorkFactory.Create();
-        var repository = await unitOfWork.GetRepositoryAsync<ISecurityRepository>(cancellationToken);
+        var progress = new SecuritySyncProgressDto(Guid.NewGuid(), false);
+        _runningSyncs.TryAdd(progress.Id, progress);
+        _ = SyncAsync(progress, cancellationToken);
+        return Task.FromResult(progress);
+    }
 
-        var maxTerm = await repository.GetMaxTermAsync(cancellationToken) ?? 0;
-        var nextTerm = maxTerm + 1;
+    public SecuritySyncProgressDto GetSyncProgress(Guid id)
+    {
+        return _runningSyncs.TryGetValue(id, out var progress) ? progress : new SecuritySyncProgressDto(id, true);
+    }
 
-        var moexSecurities = Pagination.PaginateAllAsync(async (start, limit, token) =>
-            await _moexApi.GetSecuritiesAsync(start, limit, token), 100, cancellationToken);
+    private async Task SyncAsync(SecuritySyncProgressDto progress, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await using var unitOfWork = _unitOfWorkFactory.Create();
+            var repository = await unitOfWork.GetRepositoryAsync<ISecurityRepository>(cancellationToken);
 
-        await foreach (var page in moexSecurities.WithCancellation(cancellationToken))
-            await SyncPageAsync(page, repository, nextTerm, cancellationToken);
+            var maxTerm = await repository.GetMaxTermAsync(cancellationToken) ?? 0;
+            var nextTerm = maxTerm + 1;
 
-        await repository.SoftDeleteNotInTermAsync(nextTerm, cancellationToken);
+            var moexSecurities = Pagination.PaginateAllAsync(async (start, limit, token) =>
+                await _moexApi.GetSecuritiesAsync(start, limit, token), 100, cancellationToken);
 
-        await unitOfWork.CommitAsync(cancellationToken);
+            await foreach (var page in moexSecurities.WithCancellation(cancellationToken))
+                await SyncPageAsync(page, repository, nextTerm, progress, cancellationToken);
+
+            await repository.SoftDeleteNotInTermAsync(nextTerm, cancellationToken);
+
+            await unitOfWork.CommitAsync(cancellationToken);
+        }
+        finally
+        {
+            _runningSyncs.TryRemove(progress.Id, out _);
+        }
     }
 
     private async Task SyncPageAsync(IReadOnlyCollection<MoexSecurity> page, ISecurityRepository repository,
-        int nextTerm, CancellationToken cancellationToken)
+        int nextTerm, SecuritySyncProgressDto progress, CancellationToken cancellationToken)
     {
         var moexIds = page.Select(x => x.Id).ToArray();
         var existingSecurities = (await repository.GetAsync(moexIds, cancellationToken)).ToDictionary(x => x.Id);
@@ -58,5 +80,7 @@ public sealed class SecuritySyncService : ISecuritySyncService
             });
 
         await repository.UpdateAsync(updatedSecurities, cancellationToken);
+
+        progress.Count += page.Count;
     }
 }

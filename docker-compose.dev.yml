@@ -1,17 +1,21 @@
 version: '3.4'
 
-services:
+services:  
   wealth:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
   front:
     command: npm run dev
     environment:
-      - WEALTH_API_URL=http://wealth
+      - WEALTH_API_URL=http://localhost:5000
     ports:
       - "5173:5173"
     volumes:
       - ./Wealth/Wealth.Frontend:/src/
       - nodemodules:/src/node_modules
+  pg:
+    volumes:
+      - pgdata:/var/lib/postgresql
 volumes:
-    nodemodules: {}
+  nodemodules: {}
+  pgdata: {}

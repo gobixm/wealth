@@ -3,7 +3,7 @@
   import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
   import IconButton from "@smui/icon-button";
   import { Router, Link, Route } from "svelte-navigator";
-  import Button from "@smui/button";
+  import Settings from "./lib/Settings.svelte";
 </script>
 
 <main>
@@ -22,8 +22,10 @@
         </Section>
       </Row>
     </TopAppBar>
-    <Route path="/">Home</Route>
-    <Route path="settings" component={Counter} />
+    <Route path="/" primary={false}>Home</Route>
+    <Route path="settings" primary={false}>
+      <Settings />
+    </Route>
   </Router>
 </main>
 

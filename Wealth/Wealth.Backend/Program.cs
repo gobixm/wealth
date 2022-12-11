@@ -8,10 +8,8 @@ using Wealth.Services.Securities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<MigratorHostedService>();
@@ -20,11 +18,10 @@ builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
     typeof(Initial_20221128).Assembly);
 builder.Services.AddMoex();
 
-builder.Services.AddTransient<ISecuritySyncService, SecuritySyncService>();
+builder.Services.AddSingleton<ISecuritySyncService, SecuritySyncService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -32,11 +29,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors(x => x.AllowAnyOrigin());
 app.UseAuthorization();
-
-app.MapGet("/", () => ".!.");
-
 app.MapControllers();
 
 await app.RunAsync();

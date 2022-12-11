@@ -1,6 +1,9 @@
+using Wealth.Domain.Securities;
+
 namespace Wealth.Services.Securities;
 
 public interface ISecuritySyncService
 {
-    Task SyncSecuritiesAsync(CancellationToken cancellationToken = default);
+    Task<SecuritySyncProgressDto> SyncSecuritiesAsync(CancellationToken cancellationToken = default);
+    SecuritySyncProgressDto GetSyncProgress(Guid id);
 }
