@@ -7,6 +7,7 @@ using DotNet.Testcontainers.Containers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using Wealth.Domain.Currencies;
 using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
 using Wealth.Infrastructure.Repositories;
@@ -20,7 +21,7 @@ public sealed class DbFixture : IAsyncLifetime
         {
             Database = "db",
             Password = "postgres",
-            Username = "postgres"
+            Username = "postgres",
         })
         .Build();
 
@@ -41,7 +42,8 @@ public sealed class DbFixture : IAsyncLifetime
 
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddPgSql(new PgRepositoryFactoryOptions()
-            .RegisterRepository<ISecurityRepository, SecurityRepository>(), typeof(Initial_20221128).Assembly);
+            .RegisterRepository<ISecurityRepository, SecurityRepository>()
+            .RegisterRepository<ICurrencyRepository, CurrencyRepository>(), typeof(Initial_20221128).Assembly);
         serviceCollection.AddTransient<IConfiguration>(_ => configuration);
 
         Provider = serviceCollection.BuildServiceProvider();

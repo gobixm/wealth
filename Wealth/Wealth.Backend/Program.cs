@@ -1,6 +1,7 @@
 using DataAccess.Pg;
 using Moex.Extenstions;
 using Wealth.Backend;
+using Wealth.Domain.Currencies;
 using Wealth.Domain.Securities;
 using Wealth.Infrastructure.Migrations;
 using Wealth.Infrastructure.Repositories;
@@ -14,7 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<MigratorHostedService>();
 builder.Services.AddPgSql(new PgRepositoryFactoryOptions()
-        .RegisterRepository<ISecurityRepository, SecurityRepository>(),
+        .RegisterRepository<ISecurityRepository, SecurityRepository>()
+        .RegisterRepository<ICurrencyRepository, CurrencyRepository>(),
     typeof(Initial_20221128).Assembly);
 builder.Services.AddMoex();
 
