@@ -31,10 +31,10 @@ public sealed class CurrencyRepository : PgRepository, ICurrencyRepository
             cancellationToken: cancellationToken));
     }
 
-    public async Task<long> UpdateAsync(IEnumerable<Currency> securities, CancellationToken cancellationToken = default)
+    public async Task<long> UpdateAsync(IEnumerable<Currency> currencies, CancellationToken cancellationToken = default)
     {
         var counter = 0;
-        foreach (var security in securities)
+        foreach (var security in currencies)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -47,19 +47,22 @@ public sealed class CurrencyRepository : PgRepository, ICurrencyRepository
         return counter;
     }
 
-    public async Task<long> AddAsync(IEnumerable<Currency> securities, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<Currency>> AddAsync(IEnumerable<Currency> currencies,
+        CancellationToken cancellationToken = default)
     {
-        var counter = 0;
-        foreach (var security in securities)
+        var result = new List<Currency>();
+        foreach (var security in currencies)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            counter += await Connection.ExecuteAsync(new CommandDefinition(
-                "insert into currencies (Id, Ticker, Name) values (@Id, @Ticker, @Name)",
+            var currency = await Connection.QuerySingleAsync<Currency>(new CommandDefinition(
+                "insert into currencies (Ticker, Name) values (@Ticker, @Name) returning *",
                 security,
                 cancellationToken: cancellationToken));
+
+            result.Add(currency);
         }
 
-        return counter;
+        return result;
     }
 }

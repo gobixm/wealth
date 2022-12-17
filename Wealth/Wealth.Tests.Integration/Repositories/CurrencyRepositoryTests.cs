@@ -28,11 +28,12 @@ public sealed class CurrencyRepositoryTests : IClassFixture<DbFixture>
 
         // act
         var added = await repo.AddAsync(currencies);
-        var afterAdd = (await repo.GetAsync()).Where(x => currencies.Select(c => c.Id).Contains(x.Id));
-        var deleted = await repo.DeleteAsync(currencies.Take(5).Select(x => x.Id).ToList());
-        var afterDelete = (await repo.GetAsync()).Where(x => currencies.Select(c => c.Id).Contains(x.Id));;
+        var afterAdd = (await repo.GetAsync()).Where(x => added.Select(c => c.Id).Contains(x.Id));
+        var deleted = await repo.DeleteAsync(added.Take(5).Select(x => x.Id).ToList());
+        var afterDelete = (await repo.GetAsync()).Where(x => added.Select(c => c.Id).Contains(x.Id));
+        ;
 
-        var update = currencies.Last() with
+        var update = added.Last() with
         {
             Name = "new name", Ticker = "USD"
         };
@@ -40,10 +41,12 @@ public sealed class CurrencyRepositoryTests : IClassFixture<DbFixture>
         var afterUpdate = await repo.GetAsync(update.Id);
 
         // assert
-        added.Should().Be(10);
-        afterAdd.Should().BeEquivalentTo(currencies, options => options.WithoutStrictOrdering());
+        added.Should().HaveCount(10);
+        added.First().Should().BeEquivalentTo(currencies[0], options => options.Excluding(x => x.Id));
+        afterAdd.Should().BeEquivalentTo(currencies, options => options.WithoutStrictOrdering().Excluding(x => x.Id));
         deleted.Should().Be(5);
-        afterDelete.Should().BeEquivalentTo(currencies.Skip(5), options => options.WithoutStrictOrdering());
+        afterDelete.Should().BeEquivalentTo(currencies.Skip(5),
+            options => options.WithoutStrictOrdering().Excluding(x => x.Id));
         updated.Should().Be(1);
         afterUpdate.Should().BeEquivalentTo(update);
     }
