@@ -31,7 +31,6 @@ public sealed class CurrencyRepositoryTests : IClassFixture<DbFixture>
         var afterAdd = (await repo.GetAsync()).Where(x => added.Select(c => c.Id).Contains(x.Id));
         var deleted = await repo.DeleteAsync(added.Take(5).Select(x => x.Id).ToList());
         var afterDelete = (await repo.GetAsync()).Where(x => added.Select(c => c.Id).Contains(x.Id));
-        ;
 
         var update = added.Last() with
         {

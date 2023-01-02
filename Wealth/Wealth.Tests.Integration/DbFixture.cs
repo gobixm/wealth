@@ -45,7 +45,8 @@ public sealed class DbFixture : IAsyncLifetime
         serviceCollection.AddPgSql(new PgRepositoryFactoryOptions()
                 .RegisterRepository<ISecurityRepository, SecurityRepository>()
                 .RegisterRepository<ICurrencyRepository, CurrencyRepository>()
-                .RegisterRepository<ITransactionRepository, TransactionRepository>(),
+                .RegisterRepository<ITransactionRepository, TransactionRepository>()
+                .RegisterRepository<ISecuritySummaryRepository, SecuritySummaryRepository>(),
             typeof(Initial_20221128).Assembly);
         serviceCollection.AddTransient<IConfiguration>(_ => configuration);
 
