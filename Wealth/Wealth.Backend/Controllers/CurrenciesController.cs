@@ -4,6 +4,7 @@ using Wealth.Services.Currencies;
 
 namespace Wealth.Backend.Controllers;
 
+[ApiController]
 [Route("currencies")]
 public sealed class CurrenciesController : ControllerBase
 {

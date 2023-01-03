@@ -4,6 +4,7 @@ using Wealth.Services.Securities;
 
 namespace Wealth.Backend.Controllers;
 
+[ApiController]
 [Route("secs")]
 public sealed class SecuritiesController : ControllerBase
 {

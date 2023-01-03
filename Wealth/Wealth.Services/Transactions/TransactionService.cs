@@ -53,7 +53,8 @@ public sealed class TransactionService : ITransactionService
             TotalFee = -saved.Fee,
             TotalPriceWithFee = saved.OperationType == OperationType.Buy
                 ? saved.TotalPrice
-                : -saved.TotalPrice - saved.Fee
+                : -saved.TotalPrice - saved.Fee,
+            CurrencyId = saved.CurrencyId
         };
     }
 }
