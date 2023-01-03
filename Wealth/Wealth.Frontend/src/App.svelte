@@ -1,9 +1,13 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
   import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
   import IconButton from "@smui/icon-button";
   import { Router, Link, Route } from "svelte-navigator";
   import Settings from "./lib/Settings.svelte";
+  import TabBar from "@smui/tab-bar";
+  import Tab, { Label } from "@smui/tab";
+  import AddTransaction from "./lib/AddTransaction.svelte";
+
+  let activeTab = "Buy/Sell";
 </script>
 
 <main>
@@ -22,7 +26,15 @@
         </Section>
       </Row>
     </TopAppBar>
-    <Route path="/" primary={false}>Home</Route>
+    <Route path="/" primary={false}>
+      <TabBar tabs={["Buy/Sell"]} let:tab bind:active={activeTab}>
+        <Tab {tab}>
+          <Label>{tab}</Label>
+        </Tab>
+      </TabBar>
+
+      {#if activeTab === "Buy/Sell"}<AddTransaction />{/if}
+    </Route>
     <Route path="settings" primary={false}>
       <Settings />
     </Route>

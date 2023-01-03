@@ -9,21 +9,8 @@
   } from "@smui/data-table";
   import IconButton from "@smui/icon-button";
   import { onMount } from "svelte";
+  import type { Security, SecuritySyncProgress } from "../models";
   import { apiUrl } from "./api";
-
-  interface SecuritySyncProgress {
-    id: string;
-    completed: boolean;
-    count: number;
-  }
-
-  interface Security {
-    id: string;
-    name: string;
-    modified: Date;
-    deleted: boolean;
-    term: number;
-  }
 
   let progress: SecuritySyncProgress;
   let progressTimer: NodeJS.Timer;

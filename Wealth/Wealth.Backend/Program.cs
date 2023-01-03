@@ -6,6 +6,7 @@ using Wealth.Domain.Securities;
 using Wealth.Domain.Transactions;
 using Wealth.Infrastructure.Migrations;
 using Wealth.Infrastructure.Repositories;
+using Wealth.Services.Currencies;
 using Wealth.Services.Securities;
 using Wealth.Services.Transactions;
 
@@ -27,6 +28,7 @@ builder.Services.AddMoex();
 builder.Services.AddSingleton<ISecuritySyncService, SecuritySyncService>();
 builder.Services.AddSingleton<ISecurityService, SecurityService>();
 builder.Services.AddSingleton<ITransactionService, TransactionService>();
+builder.Services.AddSingleton<ICurrencyService, CurrencyService>();
 
 var app = builder.Build();
 

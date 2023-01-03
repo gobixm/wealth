@@ -33,6 +33,11 @@ public sealed class MoexApi : IMoexApi
         var response = await _client.GetAsync<MoexResponse>(request, cancellationToken);
         response.ThrowIfNull();
 
+        if (response.Data.Rows?.Rows is null)
+        {
+            return Array.Empty<MoexSecurity>();
+        }
+        
         return response.Data.Rows.Rows
             .Select(x => new MoexSecurity(x.GetAttributeValue("secid")!, x.GetAttributeValue("name")!))
             .ToList();
